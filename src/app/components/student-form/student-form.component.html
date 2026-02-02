@@ -1,0 +1,82 @@
+<h2 mat-dialog-title>
+  <mat-icon>{{ isViewMode ? 'visibility' : isEditMode ? 'edit' : 'person_add' }}</mat-icon>
+  {{ dialogTitle }}
+</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="studentForm">
+    <div class="form-grid">
+      <!-- Roll No (only shown in edit/view mode) -->
+      <mat-form-field appearance="outline" *ngIf="isEditMode || isViewMode">
+        <mat-label>Roll No</mat-label>
+        <input matInput formControlName="rollNo" readonly>
+        <mat-icon matPrefix>badge</mat-icon>
+      </mat-form-field>
+
+      <!-- First Name -->
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" placeholder="Enter first name">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="studentForm.get('firstName')?.invalid && studentForm.get('firstName')?.touched">
+          {{ getErrorMessage('firstName') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Last Name -->
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" placeholder="Enter last name">
+        <mat-icon matPrefix>person_outline</mat-icon>
+        <mat-error *ngIf="studentForm.get('lastName')?.invalid && studentForm.get('lastName')?.touched">
+          {{ getErrorMessage('lastName') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Phone Number -->
+      <mat-form-field appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNo" placeholder="Enter 10-digit phone number">
+        <mat-icon matPrefix>phone</mat-icon>
+        <mat-error *ngIf="studentForm.get('phoneNo')?.invalid && studentForm.get('phoneNo')?.touched">
+          {{ getErrorMessage('phoneNo') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Enter email address">
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-error *ngIf="studentForm.get('email')?.invalid && studentForm.get('email')?.touched">
+          {{ getErrorMessage('email') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Department -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Department</mat-label>
+        <mat-select formControlName="department" placeholder="Select department">
+          <mat-option *ngFor="let dept of departments" [value]="dept">
+            {{ dept }}
+          </mat-option>
+        </mat-select>
+        <mat-icon matPrefix>school</mat-icon>
+        <mat-error *ngIf="studentForm.get('department')?.invalid && studentForm.get('department')?.touched">
+          {{ getErrorMessage('department') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">
+    <mat-icon>close</mat-icon>
+    {{ isViewMode ? 'Close' : 'Cancel' }}
+  </button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" *ngIf="!isViewMode">
+    <mat-icon>{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+    {{ isEditMode ? 'Update' : 'Save' }}
+  </button>
+</mat-dialog-actions>

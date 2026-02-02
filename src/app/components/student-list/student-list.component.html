@@ -1,0 +1,99 @@
+<mat-toolbar color="primary" class="toolbar">
+  <span>Student Management System</span>
+  <span class="spacer"></span>
+  <button mat-raised-button color="accent" (click)="openAddDialog()">
+    <mat-icon>add</mat-icon>
+    Add Student
+  </button>
+  <button mat-raised-button color="warn" (click)="deleteAllStudents()" style="margin-left: 10px;">
+    <mat-icon>delete_sweep</mat-icon>
+    Delete All
+  </button>
+</mat-toolbar>
+
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field class="search-field">
+        <mat-label>Search Students</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search by name, email, department..." #input>
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+          <!-- Roll No Column -->
+          <ng-container matColumnDef="rollNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Roll No </th>
+            <td mat-cell *matCellDef="let student"> {{student.rollNo}} </td>
+          </ng-container>
+
+          <!-- First Name Column -->
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+            <td mat-cell *matCellDef="let student"> {{student.firstName}} </td>
+          </ng-container>
+
+          <!-- Last Name Column -->
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+            <td mat-cell *matCellDef="let student"> {{student.lastName}} </td>
+          </ng-container>
+
+          <!-- Phone No Column -->
+          <ng-container matColumnDef="phoneNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone No </th>
+            <td mat-cell *matCellDef="let student"> {{student.phoneNo}} </td>
+          </ng-container>
+
+          <!-- Email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let student"> {{student.email}} </td>
+          </ng-container>
+
+          <!-- Department Column -->
+          <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+            <td mat-cell *matCellDef="let student"> {{student.department}} </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let student">
+              <button mat-icon-button color="primary" (click)="openViewDialog(student)" matTooltip="View">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button color="accent" (click)="openEditDialog(student)" matTooltip="Edit">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteStudent(student.rollNo!)" matTooltip="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="7">
+              <div class="no-data">
+                <mat-icon>inbox</mat-icon>
+                <p>No students found</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" 
+                     showFirstLastButtons
+                     aria-label="Select page of students">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>
