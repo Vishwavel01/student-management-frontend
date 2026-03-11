@@ -7,7 +7,7 @@ import { Student, ApiResponse } from '../models/student.model';
   providedIn: 'root'
 })
 export class StudentService {
-  private baseUrl = 'https://student-management-backend-production-2b73.up.railway.app/StuManageSys';
+  private baseUrl = 'https://student-management-backend-production-d7cc.up.railway.app/StuManageSys';
 
   constructor(private http: HttpClient) { }
 
