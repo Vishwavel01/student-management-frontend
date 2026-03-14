@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Student, ApiResponse } from '../models/student.model';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-  // private baseUrl = 'http://localhost:8080/StuManageSys';
-  private baseUrl = 'https://student-management-backend-production-d7cc.up.railway.app/StuManageSys';
   // private baseUrl = 'https://student-management-backend-production-2b73.up.railway.app/StuManageSys';
+   private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
