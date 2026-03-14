@@ -8,11 +8,11 @@ import { environment } from '../../environments/environment.prod';
   providedIn: 'root'
 })
 export class StudentService {
-  // private baseUrl = 'https://student-management-backend-production-2b73.up.railway.app/StuManageSys';
-   private baseUrl = environment.apiUrl;
 
+   private baseUrl = 'https://student-management-backend-production-2b73.up.railway.app/StuManageSys';
+  // private baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
-
+  
   // Get all students
   getAllStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.baseUrl}/students`);
