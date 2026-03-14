@@ -9,7 +9,8 @@ import { environment } from '../../environments/environment.prod';
 })
 export class StudentService {
 
-   private baseUrl = 'https://student-management-backend-production-2b73.up.railway.app/StuManageSys';
+  private baseUrl = 'https://student-management-backend-production-d7cc.up.railway.app/StuManageSys';
+  //  private baseUrl = 'https://student-management-backend-production-2b73.up.railway.app/StuManageSys';
   // private baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
   
