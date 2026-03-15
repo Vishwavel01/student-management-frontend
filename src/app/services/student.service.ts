@@ -11,8 +11,11 @@ export class StudentService {
 
   private baseUrl = 'https://student-management-backend-production-d7cc.up.railway.app/StuManageSys';
   //  private baseUrl = 'https://student-management-backend-production-2b73.up.railway.app/StuManageSys';
-  // private baseUrl = environment.apiUrl;
-  constructor(private http: HttpClient) { }
+   //private baseUrl = environment.apiUrl;
+   //private baseUrl = 'http://localhost:8080/StuManageSys';
+  constructor(private http: HttpClient){
+    //this.baseUrl = environment.apiUrl; // Use the API URL from the environment configuration
+  }
   
   // Get all students
   getAllStudents(): Observable<Student[]> {

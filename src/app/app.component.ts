@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { StudentListComponent } from './components/student-list/student-list.component';  
 
@@ -9,6 +9,6 @@ import { StudentListComponent } from './components/student-list/student-list.com
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent{
   title = 'Student Management System';
 }
