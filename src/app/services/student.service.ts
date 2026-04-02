@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Student, ApiResponse } from '../models/student.model';
-import { environment } from '../../environments/environment.prod'; 
+import { environment } from '../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  private baseUrl = 'http://localhost:8080/StuManageSys';
+  private baseUrl = environment.apiUrl;
+  //private baseUrl = 'http://localhost:8080/StuManageSys';
   //private baseUrl = 'https://student-management-backend-production-d7cc.up.railway.app/StuManageSys';
   //  private baseUrl = 'https://student-management-backend-production-2b73.up.railway.app/StuManageSys';
-   //private baseUrl = environment.apiUrl;
    //private baseUrl = 'http://localhost:8080/StuManageSys';
   constructor(private http: HttpClient){
     //this.baseUrl = environment.apiUrl; // Use the API URL from the environment configuration
